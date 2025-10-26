@@ -16,7 +16,7 @@ phases:
   post_build:
     commands:
       - echo Deploying to S3...
-      - aws s3 sync dist/ s3://github-test-workshop/ --delete
+      - aws s3 sync . s3://my-portfolio-demo/ --delete
       - echo ✅ Deployment completed!
 
 artifacts:
