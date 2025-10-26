@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm install
+
+  build:
+    commands:
+      - echo Building project...
+      - npm run build  # or adjust if your project uses another build command
+
+  post_build:
+    commands:
+      - echo Deploying to S3...
+      - aws s3 sync dist/ s3://github-test-workshop/ --delete
+      - echo ✅ Deployment completed!
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist
